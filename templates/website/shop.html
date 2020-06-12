@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load website_extras %}
+
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/website/shop.css' %}">
+{% endblock css %}
+
+{% block content %}
+    <div class="container custom-margin-top">
+        {% for c in canned_foods %}
+            {% if forloop.counter0|modulo:"3" == 0 %}
+            <div class="row canned_row">
+            {% endif %}
+                {% include 'website/product_card.html' with element=c %}
+                <div class="offset-1"></div>
+            {% if forloop.counter|modulo:"3" == 0 and forloop.counter0 != 0 %}
+            </div>
+            {% endif %}
+
+        {% endfor %}
+    </div>
+    {% include 'website/notification.html' %}
+{% endblock content %}
+
+{% block javascript %}
+    {% load static %}
+    <script src="{% static 'js/website/shop.js' %}"></script>
+    <script src="{% static 'js/cart/cart.js' %}"></script>
+{% endblock javascript %}

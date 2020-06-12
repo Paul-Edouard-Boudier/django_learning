@@ -1,0 +1,22 @@
+.right-part {
+}
+
+.price-related {
+    padding-left: inherit;
+    border-left: 1px solid gray;
+}
+
+.product-photo {
+    width: 250px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+}
+
+#ingredients-list {
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 200;
+}

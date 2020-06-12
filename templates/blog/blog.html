@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'website/css/presentation.css' %}">
+{% endblock css %}
+
+{% block content %}
+    {% include 'blog/about.html' %}
+    {% include 'blog/contact.html' %}
+    {% include 'blog/footer.html' %}
+{% endblock content %}

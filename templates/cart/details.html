@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for p in products_in_cart %}
+        {{ p }}
+    {% empty %}
+        <p>Nothing to see here, please disperse !</p>
+    {% endfor %}
+{% endblock content %}

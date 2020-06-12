@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block css %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/website/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/website/product_detail.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="container">
+    <h4 class="d-flex justify-content-center">{{ canned_food.name }}</h4>
+    <div class="row">
+        <div class="col-lg-8 left-part">
+            <div class="row">
+                <div class="col-lg-4 product-photo">
+                    PHOTO
+                </div>
+                <div class="col-lg-8">
+                    <p>A consommer jusqu'au X</p>
+                    <p>Notes de consommation</p>
+                    <div class="product-notes">
+                        {{ canned_food.note }}
+                    </div>
+                    <div id="ingredients-list">
+                        <p>Ingredients</p>
+                        <ul class="row ul-no-style">
+                            {% for i in canned_food.get_ingredients %}
+                                <li class="col-lg-3">{{i}}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 right-part">
+            <div class="price-related">
+                <p>Prixe : {{ canned_food.price }} €</p>
+                <select data-product-id="{{element.id}}" class="form-control select-format">
+                    <option data-stock-id="{{canned_food.get_stocks.0.id}}" value="{{canned_food.get_stocks.0.weight}}" selected>{{canned_food.get_stocks.0.weight}} grammes</option>
+                    {% for s in canned_food.get_stocks|slice:"1:" %}
+                        <option data-stock-id="{{s.id}}" value="{{s.weight}}">{{s.weight}} grammes</option>
+                    {% endfor %}
+                </select>
+                <button data-product-id="{{element.id}}" class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' canned_food.get_stocks.0.id %}">
+                    Ajouter au panier <i class="fa fa-2x fa-cart-plus"></i>
+                </button>
+                <div data-qty-id="{{canned_food.get_stocks.0.id}}" class="quantity-left">quantité restante ( {{canned_food.get_stocks.0.quantity}} )</div>
+                {% for s in canned_food.get_stocks|slice:"1:" %}
+                    <div data-qty-id="{{s.id}}" class="quantity-left" style="display:none;">quantité restante ( {{s.quantity}} )</div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include 'website/notification.html' %}
+{% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/cart/cart.js' %}"></script>
+{% endblock javascript %}

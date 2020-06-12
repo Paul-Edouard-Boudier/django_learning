@@ -1,0 +1,55 @@
+{% load static %}
+<div class="canned-card no-padding col-sm-3">
+    <a class="a-no-style" data-id="{{element.id}}" href="{% url 'detail' element.id %}">
+        <div class="canned-card-top">
+            <div class="canned-name text-center">
+                {{ element }}
+            </div>
+            <div class="canned-img">
+            </div>
+        </div>
+    </a>
+    <div class="canned-card-bot">
+        <div class="canned-ingredients small-padding">
+            <div id="ingredients-list">
+                ingrédients
+                {% if element.get_ingredients|length > 3 %}
+                <i class="caret-img fa fa-caret-right"></i>
+                {% endif %}
+            </div>
+            <div class="row canned-ingredients-row">
+                {% if element.get_ingredients|length > 3 %}
+                {% for i in element.get_ingredients|slice:":3"  %}
+                <span class="col-sm-4 ingredient">{{i.name}}</span>
+                {% endfor %}
+                {% for i in element.get_ingredients|slice:"3:" %}
+                <span class="hidden col-sm-4 ingredient">{{ i.name }}</span>
+                {% endfor %}
+                <span class="col-sm-4 ingredient three_dots">...</span>
+                {% else %}
+                {% for i in element.get_ingredients %}
+                <span class="col-sm-4 ingredient">{{i.name}}</span>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+        <div class="small-padding d-flex justify-content-between">
+            <div class="d-flex align-items-center">
+                <span class="format-picker">format</span>
+                <select class="form-control-sm form-control select-format" data-product-id="{{element.id}}">
+                    {% for s in element.get_stocks %}
+                    <option value="" data-stock-id="{{s.id}}">{{s.weight}} g</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="d-flex align-items-center">
+                <button data-product-id="{{element.id}}" class="btn btn-outline-secondary btn-add-to-cart" data-url="{% url 'add_to_cart' element.get_stocks.0.id %}">
+                    <i class="fa fa-1x fa-cart-plus"></i>
+                </button>
+                <span class="">{{element.price}}€</span>
+            </div>
+            <!-- <div class="canned-price text-right small-padding"> -->
+            <!-- </div> -->
+        </div>
+    </div>
+</div>
