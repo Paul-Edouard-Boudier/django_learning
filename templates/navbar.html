@@ -6,45 +6,28 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="{% url 'blog' %}">Présentation<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{% url 'shop' %}">Boutique</a>
         </li>
-      <!-- <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li> -->
-        <!-- <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-        </li> -->
-        <li class="nav-item">
-            <a href="" class="nav-link">
-                <i class="fa fa-2x fa-user" aria-hidden="true"></i>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{% url 'cart' %}" class="nav-link">
-                <i class="fa fa-2x fa-shopping-cart" aria-hidden="true"></i>
-            </a>
-        </li>
     </ul>
-
-    <form id="form_search" class="form-inline my-2 my-lg-0" method="POST" action="" >
-        <input class="form-control mr-sm-2" type="search" placeholder="rechercher un ingredient..."
-                aria-label="Search" name="canned_search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            <i class="fa fa-search" aria-hidden="true"></i>
-        </button>
-        {% csrf_token %}
-    </form>
+    <div class="form-inline my-2 my-lg-0">
+        <form id="form_search" class="input-group input-group-sm" method="POST" action="">
+            <input type="text" class="form-control" aria-label="small" aria-describedby="inputGroup-sizing-sm" placeholder="rechercher un ingredient..."
+            name="canned_search" aria-label="search">
+            <div class="input-group-append">
+                <button type="button" class="btn btn-secondary btn-number">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+            {% csrf_token %}
+        </form>
+        <a class="btn btn-success btn-sm ml-3" href="{% url 'cart' %}">
+            <i class="fa fa-shopping-cart"></i> Panier
+            <span id="badge-cart" class="badge badge-light"></span>
+        </a>
+    </div>
   </div>
 </nav>

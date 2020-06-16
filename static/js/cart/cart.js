@@ -15,7 +15,8 @@ let add_to_cart_selector = '.btn-add-to-cart',
         quantity_infos_selector = '.quantity-left',
         format_selector = '.select-format',
         notification_success_selector = '#notification-success',
-        notification_error_selector = '#notification-error';
+        notification_error_selector = '#notification-error',
+        badge_cart_selector = '#badge-cart';
 
 // try to add element clicked to the cart
 $(add_to_cart_selector).on('click', function(e) {
@@ -98,6 +99,9 @@ function change_add_to_cart_url(product_id, new_stock_id) {
     $(add_to_cart_selector+"[data-product-id='"+product_id+"']").attr('data-url', new_url)
 }
 
+function display_quantity_on_badge(quantity) {
+    $(badge_cart_selector).text(quantity).show();
+}
 
 // -------------------------------
 //              AJAX
@@ -108,6 +112,7 @@ function change_add_to_cart_url(product_id, new_stock_id) {
 function add_to_cart(url) {
     $.get(url).done(function(data) {
         display_notification_success(data.name)
+        display_quantity_on_badge(data.total)
     }).fail(function() {
         display_notification_error('une erreur est survenue');
     })

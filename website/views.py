@@ -16,7 +16,6 @@ def shop(request):
         data = {
             'canned_foods': CannedFood.objects.all(),
         }
-        # del request.session['cart']
 
         return render(request, 'website/shop.html', data)
 

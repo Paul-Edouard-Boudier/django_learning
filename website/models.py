@@ -47,9 +47,9 @@ class CannedFood(models.Model):
 
 
 class Stock(models.Model):
-    cannedfood = models.ForeignKey(CannedFood, on_delete=models.PROTECT)
     weight = models.IntegerField(default=0)
     quantity = models.IntegerField(default=0)
+    cannedfood = models.ForeignKey(CannedFood, on_delete=models.PROTECT)
 
     def __str__(self):
         return f'{self.cannedfood.name}_{self.weight}g'
