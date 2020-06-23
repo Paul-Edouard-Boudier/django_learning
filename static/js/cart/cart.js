@@ -103,6 +103,10 @@ function display_quantity_on_badge(quantity) {
     $(badge_cart_selector).text(quantity).show();
 }
 
+function hide_quantity_on_badge() {
+    $(badge_cart_selector).text("").hide()
+}
+
 // -------------------------------
 //              AJAX
 // -------------------------------
@@ -112,7 +116,9 @@ function display_quantity_on_badge(quantity) {
 function add_to_cart(url) {
     $.get(url).done(function(data) {
         display_notification_success(data.name)
-        display_quantity_on_badge(data.total)
+        data.total > 0
+            ? display_quantity_on_badge(data.total)
+            : hide_quantity_on_badge()
     }).fail(function() {
         display_notification_error('une erreur est survenue');
     })

@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Product',
+            name='CartItem',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('quantity', models.IntegerField(default=1)),
@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                 ('ordered_at', models.DateField(default=datetime.datetime.now)),
                 ('created_at', models.DateField(default=datetime.datetime.now)),
                 ('shipping_fees', models.IntegerField(default=1)),
-                ('orderitems', models.ManyToManyField(to='cart.Product')),
+                ('orderitems', models.ManyToManyField(to='cart.CartItem')),
             ],
         ),
     ]

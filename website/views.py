@@ -20,14 +20,6 @@ def shop(request):
         return render(request, 'website/shop.html', data)
 
 
-def presentation(request):
-    """
-    To move to another app relativ to the blog part
-    """
-    data = {}
-    return render(request, 'website/presentation.html', data)
-
-
 def product_detail(request, id):
     canned_food = CannedFood.objects.get(pk=id)
     data = {'canned_food': canned_food}

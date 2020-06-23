@@ -3,7 +3,8 @@
 {% block content %}
     {% for p in products_in_cart %}
         <div>
-            {{p.item}}, {{p.item.cannedfood.price }}€ X {{p.quantity}} = {{ p.product_price}} €
+            <p>{{p.item}}, {{p.item.cannedfood.price }}€ X {{p.quantity}} = {{ p.product_price}} €</p>
+            <a href="{% url 'delete_from_cart' p.item.id  %}">Delete from cart</a>
         </div>
     {% empty %}
         <p>Nothing to see here, please disperse !</p>

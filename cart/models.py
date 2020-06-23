@@ -6,7 +6,8 @@ from website.models import Stock
 
 """
 Création d'un panier contenant des article (product)
-1 article est un stock avec une quantité pour savoir cb on en veux dans le panier
+1 article est un stock avec une quantité pour savoir cb on en veux dans
+le panier
 
 Il faut avoir le total du panier en multipliant le
 prix de l'article * la quantité pour chaque article du panier
@@ -14,7 +15,7 @@ prix de l'article * la quantité pour chaque article du panier
 """
 
 
-class Product(models.Model):
+class CartItem(models.Model):
     item = models.ForeignKey(Stock, on_delete=models.CASCADE)
     quantity = models.IntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -29,7 +30,7 @@ class Cart(models.Model):
     """
     Can change shipping fees to another model with predefinite fees
     """
-    cartitems = models.ManyToManyField(Product)
+    cartitems = models.ManyToManyField(CartItem)
     ordered_at = models.DateField(default=datetime.now)
     created_at = models.DateField(default=datetime.now)
     shipping_fees = models.IntegerField(default=1)

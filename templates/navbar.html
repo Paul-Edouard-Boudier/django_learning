@@ -26,7 +26,11 @@
         </form>
         <a class="btn btn-success btn-sm ml-3" href="{% url 'cart' %}">
             <i class="fa fa-shopping-cart"></i> Panier
-            <span id="badge-cart" class="badge badge-light"></span>
+            <span id="badge-cart" class="badge badge-light">
+                {% if request.session.total_in_cart %}
+                    {{request.session.total_in_cart}}
+                {% endif %}
+            </span>
         </a>
     </div>
   </div>
